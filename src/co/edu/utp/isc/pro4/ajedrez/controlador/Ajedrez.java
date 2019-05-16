@@ -28,7 +28,7 @@ public class Ajedrez {
     /*Temporal*/
     private PnlTablero pnlTablero;
 
-    private Jugador[] jugadores;
+    public Jugador[] jugadores;
     private Tablero tablero;
     private Cronometro cronometro;
 
@@ -47,6 +47,7 @@ public class Ajedrez {
         this();
         this.jugadores[0] = jugador1;
         this.jugadores[1] = jugador2;
+        
     }
 
     public void setPnlTablero(PnlTablero pnlTablero) {
@@ -57,11 +58,11 @@ public class Ajedrez {
     public void jugar() {
         jugadores[0].setAjedrez(this);
         jugadores[1].setAjedrez(this);
-
+        
         ubicarFichasTablero();
-
         cronometro.iniciar();
         mostrarTablero();
+        jugadores[1].jugar(tablero.getCasilla("C8"),tablero.getCasilla("B8"));
         /*
         do {
             jugadores[turno].jugar();

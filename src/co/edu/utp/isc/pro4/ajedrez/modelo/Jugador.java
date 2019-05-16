@@ -23,7 +23,7 @@ public class Jugador {
     public void jugar(Casilla casillaI, Casilla casillaF) {
         if(casillaI.isOcupada()){
             Ficha f;
-            f = casillaI.getFicha();    
+            f = casillaI.getFicha();
             f.mover(ajedrez.getTablero(), casillaI, casillaF);
         }
     }

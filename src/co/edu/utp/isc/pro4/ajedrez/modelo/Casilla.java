@@ -68,6 +68,6 @@ public class Casilla extends Dibujable {
     }
     public void setFichaNull(){
         this.ficha = null;
-    }
+    }   
 
 }
