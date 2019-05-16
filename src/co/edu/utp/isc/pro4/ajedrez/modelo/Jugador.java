@@ -20,25 +20,12 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public void jugar(Casilla casillaI,Casilla casillaF) {
-        Ficha f;
-        String tFicha;
-        f = casillaI.getFicha();
-        if (f instanceof Peon) {
-            Peon ficha;
-        } else if (f instanceof Torre) {
-            Torre ficha;
-        } else if (f instanceof Caballo) {
-            Caballo ficha;
-        } else if (f instanceof Alfil) {
-            Alfil ficha;
-        } else if (f instanceof Reina) {
-            Reina ficha;
-        } else if (f instanceof Rey) {
-            Rey ficha;
+    public void jugar(Tablero tablero, Casilla casillaI, Casilla casillaF) {
+        if(casillaI.isOcupada()){
+            Ficha f;
+            f = casillaI.getFicha();    
+            f.mover(tablero, casillaI, casillaF);
         }
-        ficha.comer(ficha, casillaI, casillaF);
-        
     }
 
     public void setAjedrez(Ajedrez ajedrez) {

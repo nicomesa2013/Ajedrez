@@ -18,7 +18,7 @@ public class Rey extends Ficha {
     }
 
     @Override
-    public void mover() {
+    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -31,5 +31,7 @@ public class Rey extends Ficha {
     public void draw(Graphics2D g, float x, float y) {
         //TODO Dibujar la figura
     }
+
+    
 
 }

@@ -25,30 +25,50 @@ public class Alfil extends Ficha {
     }
     
     @Override
-    public void mover(Alfil ficha, Casilla casillaI, Casilla casillaF) {
+    public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
         boolean ocupada = false;
-        Casilla casillaC = new Casilla();
+        int cI,cF,fI,fF,pendiente;
+        cI = casillaI.getColumna() - 'a';//x Inicial
+        fI = casillaI.getFila() - 1;//y Inicial
+        cF = casillaF.getColumna() - 'a';//x Final 
+        fF = casillaF.getFila() - 1 ;//y Final
+        
+        pendiente = ((fF - fI)/(cF - cI));
+        Casilla casillaC;
         casillaC = casillaI;
-        while(casillaC.getFila()<= 8 && casillaC.getColumna() <= 'h'){
-            //Que confirme si el movimiento es valido
-        }
-        if(casillaF.isOcupada()){
+        if(( pendiente == 1 || pendiente == -1)){
+            if(casillaF.isOcupada()){
             //llamar metodo comer
-        }
-        else{
-            //ArrayList <Casilla> trayectoria = new ArrayList<>();
-            while(
-                  casillaC.getColumna() != casillaF.getColumna()
-                  && casillaC.getFila() == casillaF.getFila()
-                  ){
-                ocupada = (casillaC.isOcupada() == true ? true : false);
-                
             }
-            
-            
+            else{
+                while((casillaC.getFila() < casillaF.getFila()) && (casillaC.getColumna() < casillaF.getColumna()) && !ocupada){
+                    casillaC = tablero.getCasilla(cI,fI);
+                    ocupada = casillaC.isOcupada();
+                    if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                            cI = cI + 1;
+                            fI = fI + 1;
+                    }
+                    else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                            cI = cI - 1;
+                            fI = fI + 1;
+                    }
+                    else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                            cI = cI - 1;
+                            fI = fI - 1;
+                    }
+                    else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                            cI = cI + 1;
+                            fI = fI - 1;
+                    }
+                    }
+                if(!ocupada){// Ahora si se puede dar el movimiento
+                    
+                }
+
+
+            }
         }
     }
-
     @Override
     public void comer() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

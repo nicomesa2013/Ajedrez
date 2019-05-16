@@ -18,8 +18,8 @@ public class Reina extends Ficha {
         super(color);
     }
 
-    @Override
-    public void mover() {
+     @Override
+    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,5 +32,7 @@ public class Reina extends Ficha {
     public void draw(Graphics2D g, float x, float y) {
         //TODO Dibujar la figura
     }
+
+   
     
 }

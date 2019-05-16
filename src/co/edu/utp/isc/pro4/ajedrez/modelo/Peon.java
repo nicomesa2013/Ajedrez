@@ -21,7 +21,7 @@ public class Peon extends Ficha {
     }
 
     @Override
-    public void mover() {
+    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
         //TODO: Mover como peon
     }
 
@@ -43,4 +43,5 @@ public class Peon extends Ficha {
         g.draw(new Ellipse2D.Float(x + 17, y + 15, 16, 16));
         g.draw(new Rectangle2D.Float(x + 15, y + 30, 20, 15));
     }
+
 }

@@ -28,9 +28,6 @@ public class Casilla extends Dibujable {
         ficha = null;
     }
 
-    Casilla() {
-        System.out.println("");
-    }
 
     public Color getColor() {
         return color;
