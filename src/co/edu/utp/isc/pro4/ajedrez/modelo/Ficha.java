@@ -35,7 +35,13 @@ public abstract class Ficha extends Dibujable {
     public Color getColor() {
         return color;
     }
-
+    public void asociarFichaTablero(Ficha ficha,Casilla casilla){
+        ficha.setCasilla(casilla);
+        casilla.setFicha(ficha);
+    }
+    public void eliminarFichaTablero(Ficha ficha,Casilla casilla){
+        //Desasignar la ficha de la casilla y la casilla de la ficha
+    }
     @Override
     public String toString() {
         String tipo = "";

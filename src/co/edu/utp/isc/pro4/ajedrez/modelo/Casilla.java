@@ -66,5 +66,8 @@ public class Casilla extends Dibujable {
             ficha.draw(g, x, y);
         }
     }
+    public void setFichaNull(){
+        this.ficha = null;
+    }
 
 }

@@ -14,17 +14,17 @@ import co.edu.utp.isc.pro4.ajedrez.controlador.Ajedrez;
 public class Jugador {
 
     private Ajedrez ajedrez;
-    private String nombre;
+    private final String nombre;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
     }
 
-    public void jugar(Tablero tablero, Casilla casillaI, Casilla casillaF) {
+    public void jugar(Casilla casillaI, Casilla casillaF) {
         if(casillaI.isOcupada()){
             Ficha f;
             f = casillaI.getFicha();    
-            f.mover(tablero, casillaI, casillaF);
+            f.mover(ajedrez.getTablero(), casillaI, casillaF);
         }
     }
 
@@ -36,9 +36,10 @@ public class Jugador {
         return this.nombre;
     }
 
+    
     private void rendirse() {
         // No me gusta pero los estudiantes lo pidieron
         ajedrez.rendirse();
     }
-
+    
 }
