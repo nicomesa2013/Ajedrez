@@ -95,6 +95,9 @@ public class Ajedrez {
         turno = (turno == 0 ? 1 : 0);
         cronometro.cambio();
     }
+    public Tablero getTablero(){
+        return this.tablero;
+    }
 
     private boolean validarJaqueMate() {
         //TODO: Validar si el jugador contrario ha quedado en Jaque Mate
