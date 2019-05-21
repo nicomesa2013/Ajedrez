@@ -6,6 +6,7 @@
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
 import co.edu.utp.isc.pro4.ajedrez.controlador.Ajedrez;
+import co.edu.utp.isc.pro4.ajedrez.exceptions.MovimientoNoValidoException;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public void jugar(Casilla casillaI, Casilla casillaF) {
+    public void jugar(Casilla casillaI, Casilla casillaF) throws MovimientoNoValidoException {
         if(casillaI.isOcupada()){
             Ficha f;
             f = casillaI.getFicha();

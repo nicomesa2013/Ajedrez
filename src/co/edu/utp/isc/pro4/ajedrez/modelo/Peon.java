@@ -5,6 +5,7 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
+import co.edu.utp.isc.pro4.ajedrez.exceptions.MovimientoNoValidoException;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -21,7 +22,7 @@ public class Peon extends Ficha {
     }
 
     @Override
-    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
+    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) throws MovimientoNoValidoException {
         boolean ocupada = false;
             int cI,cF,fI,fF, restaA, restaB;
             cI = casillaI.getColumna() - 'A';//x Inicial
@@ -71,7 +72,7 @@ public class Peon extends Ficha {
                 }
             }
             else{
-                System.out.println("De esa forma no se mueve el peon");
+                throw new MovimientoNoValidoException("De esa forma no se mueve el peon");
             }
     }
 
