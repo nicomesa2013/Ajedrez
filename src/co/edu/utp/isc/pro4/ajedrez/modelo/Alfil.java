@@ -77,7 +77,7 @@
                 }
                 if(!ocupada){
                 if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
-                //Llamar a metodo comer
+                    this.comer( casillaI, casillaF);
                 }
                 else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
                     System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
@@ -91,43 +91,24 @@
                     System.out.println("Movimiento no valido por ficha en trayectoria");
                 }
                 }
-        }
-
-
-        @Override
-        public void comer() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            else{
+                System.out.println("De esa forma no se mueve el alfil");
+            }
         }
 
         @Override
         public void draw(Graphics2D g, float x, float y) {
+            // 50x50 dibujar la ficha
             g.setPaint(new GradientPaint(x, y,
                     getColor() == Color.BLANCO ? java.awt.Color.CYAN : java.awt.Color.BLACK,
                     x + 50, y + 50,
                     java.awt.Color.WHITE));
-            //Base de ficha
-            g.fill(new Rectangle2D.Double(x+10,y+40,30,10));
-            //Cuerpo de ficha
-            g.fill(new Rectangle2D.Double(x+20,y+30,10,10));
-            //Cabeza ficha triangulo(2 lineas)
-            GeneralPath polyline = new GeneralPath(GeneralPath.WIND_EVEN_ODD, 17);
-            polyline.moveTo(x + 15, y + 30);
-            polyline.lineTo(x + 25, y + 20);
-            polyline.lineTo(x + 35, y + 30);
-            polyline.moveTo(x + 15, y + 30);
-            g.fill(polyline);
-            //Circulo cabeza
-            g.fill(new Ellipse2D.Double(x+20, y+10, 10, 10));
+            g.fill(new Rectangle2D.Float(x + 17, y + 10, 10, 10));
+            g.fill(new Rectangle2D.Float(x + 20, y + 21, 5, 20));
+            g.fill(new Rectangle2D.Float(x + 13, y + 40, 20, 5));
             g.setPaint(java.awt.Color.BLACK);
-            //Base de ficha
-            g.draw(new Rectangle2D.Double(x+10,y+40,30,10));
-            //Cuerpo de ficha
-            g.draw(new Rectangle2D.Double(x+20,y+30,10,10));
-            //Cabeza ficha triangulo(2 lineas)
-            g.draw(new Line2D.Double(x+15,y+30,x+25,y+20));
-            g.draw(new Line2D.Double(x+25,y+20,x+35,y+30));
-            //Circulo cabeza
-            g.draw(new Ellipse2D.Double(x+20, y+10, 10, 10));
+            g.draw(new Rectangle2D.Float(x + 17, y + 10, 10, 10));
+            g.draw(new Rectangle2D.Float(x + 20, y + 21, 5, 20));
+            g.draw(new Rectangle2D.Float(x + 13, y + 40, 20, 5));
         }
-
     }

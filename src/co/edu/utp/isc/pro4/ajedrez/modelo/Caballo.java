@@ -22,85 +22,28 @@ public class Caballo extends Ficha {
     }
 
     @Override
-        public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
-            boolean ocupada = false;
-            int cI,cF,fI,fF;
-            cI = casillaI.getColumna() - 'A';//x Inicial
-            fI = casillaI.getFila() - 1;//y Inicial
-            cF = casillaF.getColumna() - 'A';//x Final 
-            fF = casillaF.getFila() - 1 ;//y Final
-            Casilla casillaC;
-            casillaC = casillaI;
-            if((fI-fF)*(fI-fF) + (cI-cF)*(cI-cF) == 5){
-                while((casillaC.getFila() != casillaF.getFila()) && (casillaC.getColumna() != casillaF.getColumna()) && !ocupada){
-                    casillaC = tablero.getCasilla(cI,fI);
-                    ocupada = casillaC.isOcupada();
-                    if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
-                        if(casillaF.getColumna() > casillaF.getFila()){
-                            cI = cI + 2;
-                            fI = fI + 1;
-                        }
-                        else if(casillaF.getColumna() < casillaF.getFila()){
-                            cI = cI + 1;
-                            fI = fI + 2;
-                        }
-                    }
-                    else if (casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
-                        if(Math.abs(casillaF.getColumna()) > Math.abs(casillaF.getFila())){
-                            cI = cI - 2;
-                            fI = fI + 1;
-                        }
-                        else if(Math.abs(casillaF.getColumna()) < Math.abs(casillaF.getFila())){
-                            cI = cI - 1;
-                            fI = fI + 2;
-                        }
-                    }
-                    else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
-                        if(Math.abs(casillaF.getColumna()) > Math.abs(casillaF.getFila())){
-                            cI = cI - 2;
-                            fI = fI - 1;
-                        }
-                        else if(Math.abs(casillaF.getColumna()) < Math.abs(casillaF.getFila())){
-                            cI = cI - 1;
-                            fI = fI - 2;
-                        }
-                    }
-                    else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
-                        if(Math.abs(casillaF.getColumna()) > Math.abs(casillaF.getFila())){
-                            cI = cI + 2;
-                            fI = fI - 1;
-                        }
-                        else if(Math.abs(casillaF.getColumna()) < Math.abs(casillaF.getFila())){
-                            cI = cI + 1;
-                            fI = fI - 2;
-                        }
-                    }
-                }
-                if(!ocupada){
-                    if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
-                    //Llamar a metodo comer
-                    }
-                    else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
-                        System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
-                    }
-                    else if(!casillaF.isOcupada()){//Movimiento normal
-                        casillaI.setFichaNull();
-                        super.asociarFichaTablero(this, casillaF);
-                    }
-                    }
-                else{//Movimiento no valido por elemento en la trayectoria
-                    System.out.println("Movimiento no valido por ficha en trayectoria");
-                }
-            }
-            
-            else{
-                System.out.println("Asi no se mueve la torre");
-            }
-        }
+    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
+       int cI,cF,fI,fF;
+       cI = casillaI.getColumna() - 'A';//x Inicial
+       fI = casillaI.getFila() - 1;//y Inicial
+       cF = casillaF.getColumna() - 'A';//x Final 
+       fF = casillaF.getFila() - 1 ;//y Final
+       if((fI-fF)*(fI-fF) + (cI-cF)*(cI-cF) == 5){
+           if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
+               this.comer(casillaI, casillaF);
+           }
+           else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
+               System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
+           }
+           else if(!casillaF.isOcupada()){//Movimiento normal
+               casillaI.setFichaNull();
+               super.asociarFichaTablero(this, casillaF);
+           }    
+       }
 
-    @Override
-    public void comer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       else{
+           System.out.println("Asi no se mueve la torre");
+       }
     }
 
     @Override

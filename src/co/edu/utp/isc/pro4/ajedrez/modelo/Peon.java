@@ -22,13 +22,59 @@ public class Peon extends Ficha {
 
     @Override
     public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
-        //TODO: Mover como peon
+        boolean ocupada = false;
+            int cI,cF,fI,fF, restaA, restaB;
+            cI = casillaI.getColumna() - 'A';//x Inicial
+            fI = casillaI.getFila() - 1;//y Inicial
+            cF = casillaF.getColumna() - 'A';//x Final 
+            fF = casillaF.getFila() - 1 ;//y Final
+            restaA = fI - fF;
+            restaB = cI - cF;
+            Casilla casillaC;
+
+            if(Math.abs(restaA) == 1 ||Math.abs(restaA) == 2){
+                if(restaA == 2 && casillaI.getFicha().getColor() == Color.BLANCO && fI == 1){
+                    fI = fI + 1;
+                }
+                else if(restaA == -2 && casillaI.getFicha().getColor() == Color.NEGRO && fI == 6){
+                    fI = fI - 1;
+                }
+                casillaC = tablero.getCasilla(cI,fI);
+                ocupada = casillaC.isOcupada();
+                if(!ocupada || Math.abs(restaA) == 1){
+                    if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
+                        if(Math.abs(restaB) == 1){
+                            if(casillaI.getFicha().getColor() == Color.BLANCO && restaA == 1){
+                                this.comer(casillaI, casillaF);   
+                            }
+                            else if(casillaI.getFicha().getColor() == Color.NEGRO && restaA == -1){
+                                this.comer(casillaI, casillaF);
+                            }    
+                        }
+                    }
+                    else if(!casillaF.isOcupada()){//Movimiento normal
+                        if(casillaI.getFicha().getColor() == Color.NEGRO && restaA == -1 && restaA == -2){
+                            casillaI.setFichaNull();
+                            super.asociarFichaTablero(this, casillaF);
+                        }
+                        if(casillaI.getFicha().getColor() == Color.BLANCO && restaA == 1 && restaA == 2){
+                            casillaI.setFichaNull();
+                            super.asociarFichaTablero(this, casillaF);
+                        }
+                    }
+                    else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
+                        System.out.println("Movimiento no valido.");
+                    }    
+                }
+                else{//Movimiento no valido por elemento en la trayectoria
+                    System.out.println("Movimiento no valido por ficha en trayectoria");
+                }
+            }
+            else{
+                System.out.println("De esa forma no se mueve el peon");
+            }
     }
 
-    @Override
-    public void comer() {
-        //TODO: Comer como peon
-    }
 
     @Override
     public void draw(Graphics2D g, float x, float y) {

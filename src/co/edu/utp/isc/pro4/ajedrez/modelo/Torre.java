@@ -62,7 +62,7 @@ public class Torre extends Ficha {
                 }
                 if(!ocupada){
                 if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
-                //Llamar a metodo comer
+                this.comer(casillaI, casillaF);
                 }
                 else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
                     System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
@@ -80,13 +80,7 @@ public class Torre extends Ficha {
                 System.out.println("Asi no se mueve la torre");
             }
         }
-
-
-    @Override
-    public void comer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+        
     public void draw(Graphics2D g, float x, float y) {
         GeneralPath polyline = new GeneralPath(GeneralPath.WIND_EVEN_ODD, 17);
         polyline.moveTo(x + 5, y + 5);
