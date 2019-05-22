@@ -29,8 +29,7 @@ public class Peon extends Ficha {
             fI = casillaI.getFila() - 1;//y Inicial
             cF = casillaF.getColumna() - 'A';//x Final 
             fF = casillaF.getFila() - 1 ;//y Final
-            restaA = fI - fF;
-            restaB = cI - cF;
+            restaA = fF - fI;
             Casilla casillaC;
 
             if(Math.abs(restaA) == 1 ||Math.abs(restaA) == 2){
@@ -45,14 +44,13 @@ public class Peon extends Ficha {
                 System.out.println(ocupada);
                 System.out.println("restaA: "+ restaA);
                 if(!ocupada || Math.abs(restaA) == 1){
-                    System.out.println("--->");
                     if(!casillaF.isOcupada()){//Movimiento normal
-                        if(casillaI.getFicha().getColor() == Color.NEGRO && (restaA == 1 || restaA == 2)){
+                        if(this.getColor() == Color.NEGRO && (restaA == 1 || (restaA == 2 && fI == 6)) ){
                             casillaI.setFichaNull();
                             super.asociarFichaTablero(this, casillaF);
                             System.out.println("Entro");
                         }
-                        else if(casillaI.getFicha().getColor() == Color.BLANCO && (restaA == -1 || restaA == -2)){
+                        else if(this.getColor() == Color.BLANCO && (restaA == -1 || restaA == -2) && fI == 1){
                             casillaI.setFichaNull();
                             super.asociarFichaTablero(this, casillaF);
                         }
