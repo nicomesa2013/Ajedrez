@@ -28,17 +28,20 @@ public class Caballo extends Ficha {
        fI = casillaI.getFila() - 1;//y Inicial
        cF = casillaF.getColumna() - 'A';//x Final 
        fF = casillaF.getFila() - 1 ;//y Final
-       if((fI-fF)*(fI-fF) + (cI-cF)*(cI-cF) == 5){
-           if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
-               this.comer(casillaI, casillaF);
-           }
-           else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
-               System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
-           }
-           else if(!casillaF.isOcupada()){//Movimiento normal
+        if((fI-fF)*(fI-fF) + (cI-cF)*(cI-cF) == 5){
+           if(!casillaF.isOcupada()){//Movimiento normal
                casillaI.setFichaNull();
                super.asociarFichaTablero(this, casillaF);
-           }    
+           }       
+           
+           else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
+                if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
+                    this.comer(casillaI,casillaF);
+                }
+                else{
+                    System.out.println("Ambas fichas son del mismo color");
+                }
+            }
        }
 
        else{

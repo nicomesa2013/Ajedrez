@@ -46,26 +46,24 @@ public class Reina extends Ficha {
                     fI = fI - 1;
                 }
                 //Condiciones rectas
-                else if(casillaF.getColumna() > casillaI.getColumna()){
+                else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){//DERECHA
                     cI = cI + 1;
                 }
-                else if(casillaF.getColumna() < casillaI.getColumna()){
+                else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){//IZQUIERDA
                     cI = cI - 1;
                 }
-                else if(casillaF.getFila() < casillaI.getFila()){
+                else if(casillaF.getFila() < casillaI.getFila() && casillaF.getColumna() == casillaI.getColumna()){//ABAJO 
                     fI = fI - 1;
                 }
-                else if(casillaF.getFila() > casillaI.getFila()){
+                else if(casillaF.getFila() > casillaI.getFila() && casillaF.getColumna() == casillaI.getColumna()){//ARRIBA
                     fI = fI + 1;
                 }
+                
                 casillaC = tablero.getCasilla(fI,cI);
-                if(casillaC.getColumna() != casillaF.getColumna() && casillaC.getFila() != casillaF.getFila()){
+                if(cI != cF || fI != fF){
                     ocupada = casillaC.isOcupada();
                 }
-                if(casillaC.getColumna() != casillaF.getColumna() && casillaC.getFila() != casillaF.getFila()){
-                    ocupada = casillaC.isOcupada();
-                }
-                while((casillaC.getFila() != casillaF.getFila()) && (casillaC.getColumna() != casillaF.getColumna()) && !ocupada){
+                while((cI != cF || fI != fF) && ocupada==false){
                     casillaC = tablero.getCasilla(fI,cI);
                     ocupada = casillaC.isOcupada();
                     if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
@@ -86,16 +84,16 @@ public class Reina extends Ficha {
                         fI = fI - 1;
                     }
                     //Condiciones rectas
-                    else if(casillaF.getColumna() > casillaI.getColumna()){
+                    else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){//DERECHA
                     cI = cI + 1;
                     }
-                    else if(casillaF.getColumna() < casillaI.getColumna()){
+                    else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){//IZQUIERDA
                         cI = cI - 1;
                     }
-                    else if(casillaF.getFila() < casillaI.getFila()){
+                    else if(casillaF.getFila() < casillaI.getFila() && casillaF.getColumna() == casillaI.getColumna()){//ABAJO 
                         fI = fI - 1;
                     }
-                    else if(casillaF.getFila() > casillaI.getFila()){
+                    else if(casillaF.getFila() > casillaI.getFila() && casillaF.getColumna() == casillaI.getColumna()){//ARRIBA
                         fI = fI + 1;
                     }
                 }
@@ -108,16 +106,19 @@ public class Reina extends Ficha {
                         System.out.println("Hay una ficha en la trayectoria");
                     }
                 }
-                else if(casillaF.isOcupada()){//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
-                    if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
+                else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
+                   if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
                         if(!ocupada){
                             this.comer(casillaI,casillaF);
-                        }    
-                    }
-                    else if(this.getColor() == casillaF.getFicha().getColor()){
-                        System.out.println("Ambas casillas son del mismo color.");
-                    }
-                }
+                        }
+                        else{
+                            System.out.println("Hay una ficha en trayectoria");
+                        }
+                   }
+                   else{
+                       System.out.println("Ambas fichas son del mismo color");
+                   }
+                } 
                 }
             else{
                 System.out.println("De esa forma no se mueve la reina");

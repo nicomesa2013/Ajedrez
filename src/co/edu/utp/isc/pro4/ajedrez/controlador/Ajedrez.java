@@ -95,7 +95,7 @@ public class Ajedrez {
 
     public void cambioTurno() {
         turno = (turno == 0 ? 1 : 0);
-        cronometro.cambio();
+        //cronometro.cambio();
     }
     public Tablero getTablero(){
         return this.tablero;
@@ -148,18 +148,12 @@ public class Ajedrez {
 
     private void mostrarTablero() {
         pnlTablero.updateUI();
-//        System.out.println("  \tA \tB \tC \tD \tE \tF \tG \tH");
-//        for (int i = 0; i < 8; i++) {
-//            System.out.print((i + 1));
-//            for (int j = 0; j < 8; j++) {
-//                System.out.print("\t" + tablero.getCasilla(i, j));
-//            }
-//            System.out.println();
-//        }
     }
 
     public void moverFicha(String inicio, String fin) throws MovimientoNoValidoException {
         jugadores[turno].jugar(tablero.getCasilla(inicio),tablero.getCasilla(fin));
+        this.mostrarTablero();
+        this.cambioTurno();
     }
     
     public String nombreJugador(){
