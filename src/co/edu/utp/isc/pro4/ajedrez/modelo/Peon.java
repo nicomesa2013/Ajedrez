@@ -40,21 +40,25 @@ public class Peon extends Ficha {
                 else if(restaA == -2 && casillaI.getFicha().getColor() == Color.NEGRO && fI == 6){
                     fI = fI - 1;
                 }
-                casillaC = tablero.getCasilla(cI,fI);
+                casillaC = tablero.getCasilla(fI,cI);
                 ocupada = casillaC.isOcupada();
+                System.out.println(ocupada);
+                System.out.println("restaA: "+ restaA);
                 if(!ocupada || Math.abs(restaA) == 1){
+                    System.out.println("--->");
                     if(!casillaF.isOcupada()){//Movimiento normal
-                        if(casillaI.getFicha().getColor() == Color.NEGRO && restaA == -1 && restaA == -2){
+                        if(casillaI.getFicha().getColor() == Color.NEGRO && (restaA == 1 || restaA == 2)){
                             casillaI.setFichaNull();
                             super.asociarFichaTablero(this, casillaF);
+                            System.out.println("Entro");
                         }
-                        if(casillaI.getFicha().getColor() == Color.BLANCO && restaA == 1 && restaA == 2){
+                        else if(casillaI.getFicha().getColor() == Color.BLANCO && (restaA == -1 || restaA == -2)){
                             casillaI.setFichaNull();
                             super.asociarFichaTablero(this, casillaF);
                         }
                     }
                     else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
-                        System.out.println("Movimiento no valido.");
+                        System.out.println("Ambas fichas son del mismo color");
                     }   
                     else if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
                         if(Math.abs(restaB) == 1){
@@ -67,7 +71,7 @@ public class Peon extends Ficha {
                         }
                     }
                 }
-                else{//Movimiento no valido por elemento en la trayectoria
+                else if(ocupada){//Movimiento no valido por elemento en la trayectoria
                     System.out.println("Movimiento no valido por ficha en trayectoria");
                 }
             }
