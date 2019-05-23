@@ -86,6 +86,7 @@
                     }
                     else{
                         System.out.println("Hay una ficha en la trayectoria");
+                        
                     }
                 }
                 else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)

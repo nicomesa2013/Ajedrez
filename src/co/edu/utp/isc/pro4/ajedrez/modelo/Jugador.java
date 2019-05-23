@@ -25,7 +25,13 @@ public class Jugador {
         if(casillaI.isOcupada()){
             Ficha f;
             f = casillaI.getFicha();
-            f.mover(ajedrez.getTablero(), casillaI, casillaF);
+            System.out.println("Color: "+ casillaI.getFicha().getColor()+". Turno:"+ajedrez.getTurno());
+            if((casillaI.getFicha().getColor() == Color.BLANCO) && (ajedrez.getTurno() == 0) 
+                || (casillaI.getFicha().getColor() == Color.NEGRO) && (ajedrez.getTurno() == 1))
+                f.mover(ajedrez.getTablero(), casillaI, casillaF);
+            else{
+                ajedrez.cambioTurno();
+            }
         }
     }
 

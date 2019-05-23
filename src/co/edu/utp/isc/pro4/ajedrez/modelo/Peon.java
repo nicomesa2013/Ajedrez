@@ -24,24 +24,25 @@ public class Peon extends Ficha {
     @Override
     public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) throws MovimientoNoValidoException {
         boolean ocupada = false;
-            int cI,cF,fI,fF, restaA, restaB;
+            int cI,cF,fI,fIAUX,fF, restaA, restaB;
             cI = casillaI.getColumna() - 'A';//x Inicial
             fI = casillaI.getFila() - 1;//y Inicial
             cF = casillaF.getColumna() - 'A';//x Final 
             fF = casillaF.getFila() - 1 ;//y Final
+            fIAUX = fI;//Para validar la posicion inicial del peon sin que se pierda
             restaA = fI - fF;
             restaB = cF - cI;
             Casilla casillaC;
 
             if((Math.abs(restaA) == 2 || Math.abs(restaA) == 1)){// Condicion general de movimiento del peon
-                if(restaA == 2 && casillaI.getFicha().getColor() == Color.BLANCO && fI == 1){//Caso para mover 2 casillas BLANCO
+                if(restaA == 2 && casillaI.getFicha().getColor() == Color.BLANCO){//Caso para mover 2 casillas BLANCO
                     fI = fI + 1;
                     casillaC = tablero.getCasilla(fI,cI);
                     if(fI != fF || cI != cF){
                         ocupada = casillaC.isOcupada();
                     }
                 }
-                else if(restaA == -2 && casillaI.getFicha().getColor() == Color.NEGRO && fI == 6){//Caso para mover 2 casillas NEGRO
+                else if(restaA == 2 && casillaI.getFicha().getColor() == Color.NEGRO){//Caso para mover 2 casillas NEGRO
                     fI = fI - 1;
                     casillaC = tablero.getCasilla(fI,cI);
                     if(fI != fF || cI != cF){
@@ -49,11 +50,10 @@ public class Peon extends Ficha {
                     }
                 }
                 System.out.println(ocupada);
-                System.out.println("restaA: "+ restaA);
                 if(!ocupada){
                     if(!casillaF.isOcupada()){//Movimiento normal
                         if(this.getColor() == Color.NEGRO){
-                            if(restaA == 1 || (restaA == 2 && fI == 6)){
+                            if(restaA == 1 || (restaA == 2 && fIAUX == 6)){
                                 casillaI.setFichaNull();
                                 super.asociarFichaTablero(this, casillaF);
                             }
@@ -62,7 +62,7 @@ public class Peon extends Ficha {
                             }
                         }
                         else if(this.getColor() == Color.BLANCO){
-                            if(restaA == 1 || (restaA == -2 && fI == 1)){
+                            if(restaA == -1 || (restaA == -2 && fIAUX == 1)){
                                 casillaI.setFichaNull();
                                 super.asociarFichaTablero(this, casillaF);
                             }
@@ -83,6 +83,7 @@ public class Peon extends Ficha {
                             }
                             else{
                                 throw new MovimientoNoValidoException("Asi no come el peon");
+                                
                             }
                         }
                     }   

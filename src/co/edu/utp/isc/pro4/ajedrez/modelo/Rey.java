@@ -32,16 +32,16 @@ public class Rey extends Ficha {
     restaA = fI - fF;
     restaB = cI - cF;
     if(Math.abs(restaA) == 1 || Math.abs(restaB) == 1){
-        if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
+        if(!casillaF.isOcupada()){//Movimiento normal
+            casillaI.setFichaNull();
+            super.asociarFichaTablero(this, casillaF);
+        }    
+        else if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
             this.comer(casillaI, casillaF);
         }
         else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
             System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
         }
-        else if(!casillaF.isOcupada()){//Movimiento normal
-            casillaI.setFichaNull();
-            super.asociarFichaTablero(this, casillaF);
-        }    
     }   
     else{
         System.out.println("Asi no se mueve el rey");
