@@ -8,6 +8,7 @@ package co.edu.utp.isc.pro4.ajedrez.modelo;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,7 +67,7 @@ public class Torre extends Ficha {
                     efectivo = true;
                 }
                 else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
-                    System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
+                    //System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
                 }
                 else if(!casillaF.isOcupada()){//Movimiento normal
                     casillaI.setFichaNull();
@@ -75,11 +76,12 @@ public class Torre extends Ficha {
                 }
                 }
                 else{//Movimiento no valido por elemento en la trayectoria
-                    System.out.println("Movimiento no valido por ficha en trayectoria");
+                    //System.out.println("Movimiento no valido por ficha en trayectoria");
                 }
                 }
             else{
-                System.out.println("Asi no se mueve la torre");
+            //    System.out.println("Asi no se mueve la torre");
+              JOptionPane.showMessageDialog(null,"si no se mueve la torre");
             }
             return efectivo;
         }

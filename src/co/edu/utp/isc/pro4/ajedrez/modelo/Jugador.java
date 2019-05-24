@@ -7,6 +7,7 @@ package co.edu.utp.isc.pro4.ajedrez.modelo;
 
 import co.edu.utp.isc.pro4.ajedrez.controlador.Ajedrez;
 import co.edu.utp.isc.pro4.ajedrez.exceptions.MovimientoNoValidoException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +42,7 @@ public class Jugador {
         }
         if(!efectivo){
             ajedrez.cambioTurno();
-            System.out.println("Vuelva a internarlo");
+            JOptionPane.showMessageDialog(null,"Vuelva a internarlo");
         }
     }
 

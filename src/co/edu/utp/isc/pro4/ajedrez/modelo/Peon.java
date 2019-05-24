@@ -10,6 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,10 +59,11 @@ public class Peon extends Ficha {
                                 efectivo = true;
                             }
                             else if(fIAUX != 6){
-                                System.out.println("Este movimiento no es valido en esta fila");
+                               // System.out.println("Este movimiento no es valido en esta fila");
                             }
                             else{
-                                System.out.println("Asi no se mueve el peon");
+                               // System.out.println("Asi no se mueve el peon");
+                                JOptionPane.showMessageDialog(null,"De esa forma no se mueve el peon");
                             }
                         }
                         else if(this.getColor() == Color.BLANCO){
@@ -73,10 +75,11 @@ public class Peon extends Ficha {
                                 efectivo = true;
                             }
                             else if(fIAUX != 1){
-                                System.out.println("Este movimiento no es valido en esta fila");
+                              //  System.out.println("Este movimiento no es valido en esta fila");
                             }
                             else{
-                                System.out.println("Asi no se mueve el peon");
+                               // System.out.println("Asi no se mueve el peon");
+                              JOptionPane.showMessageDialog(null,"De esa forma no se mueve el peon");
                             }
                         }
                     }
@@ -93,7 +96,8 @@ public class Peon extends Ficha {
                                 }    
                             }
                             else{
-                                throw new MovimientoNoValidoException("Asi no come el peon");
+                                //throw new MovimientoNoValidoException("Asi no come el peon");
+                                JOptionPane.showMessageDialog(null,"De esa forma no se mueve el peon");
                                 
                             }
                         }
@@ -101,11 +105,12 @@ public class Peon extends Ficha {
                    
                 }
                 else if(ocupada){//Movimiento no valido por elemento en la trayectoria
-                    throw new MovimientoNoValidoException("Movimiento no valido por ficha en trayectoria");
+                   // throw new MovimientoNoValidoException("Movimiento no valido por ficha en trayectoria");
                 }
             }
             else{
-                throw new MovimientoNoValidoException("De esa forma no se mueve el peon");
+               // throw new MovimientoNoValidoException("De esa forma no se mueve el peon");
+               JOptionPane.showMessageDialog(null,"De esa forma no se mueve el peon");
             }
             return efectivo;
     }

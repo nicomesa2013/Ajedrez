@@ -12,6 +12,7 @@
     import java.awt.geom.GeneralPath;
     import java.awt.geom.Line2D;
     import java.awt.geom.Rectangle2D;
+import javax.swing.JOptionPane;
 
 
     /**
@@ -86,7 +87,7 @@
                         efectivo = true;
                     }
                     else{
-                        System.out.println("Hay una ficha en la trayectoria");
+                       // System.out.println("Hay una ficha en la trayectoria");
                         
                     }
                 }
@@ -97,16 +98,17 @@
                             efectivo = true;
                         }
                         else{
-                            System.out.println("Hay una ficha en trayectoria");
+                           // System.out.println("Hay una ficha en trayectoria");
                         }
                    }
                    else{
-                       System.out.println("Ambas fichas son del mismo color");
+                      // System.out.println("Ambas fichas son del mismo color");
                    }
                 }    
             }
             else{
-                System.out.println("De esa forma no se mueve el alfil");
+                //System.out.println("De esa forma no se mueve el alfil");
+                JOptionPane.showMessageDialog(null,"De esa forma no se mueve el alfil");
             }
             return efectivo;
         }

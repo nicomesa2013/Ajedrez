@@ -11,6 +11,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,11 +44,12 @@ public class Rey extends Ficha {
             efectivo = true;
         }
         else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
-            System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
+           // System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
         }
     }   
     else{
-        System.out.println("Asi no se mueve el rey");
+        //System.out.println("Asi no se mueve el rey");
+         JOptionPane.showMessageDialog(null,"Asi no se mueve el rey");
     }
     return efectivo;
  }

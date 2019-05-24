@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,13 +43,14 @@ public class Caballo extends Ficha {
                     efectivo = true;
                 }
                 else{
-                    System.out.println("Ambas fichas son del mismo color");
+                   // System.out.println("Ambas fichas son del mismo color");
                 }
             }
        }
 
        else{
-           System.out.println("Asi no se mueve el caballo");
+          // System.out.println("Asi no se mueve el caballo");
+           JOptionPane.showMessageDialog(null,"Asi no se mueve el caballo");
        }
         return efectivo;
     }

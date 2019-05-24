@@ -8,6 +8,7 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
+import javax.swing.JOptionPane;
 
 public class Reina extends Ficha {
 
@@ -104,7 +105,7 @@ public class Reina extends Ficha {
                         efectivo = true;
                     }
                     else{
-                        System.out.println("Hay una ficha en la trayectoria");
+                        //System.out.println("Hay una ficha en la trayectoria");
                     }
                 }
                 else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
@@ -114,16 +115,17 @@ public class Reina extends Ficha {
                             efectivo = true;
                         }
                         else{
-                            System.out.println("Hay una ficha en trayectoria");
+                        //    System.out.println("Hay una ficha en trayectoria");
                         }
                    }
                    else{
-                       System.out.println("Ambas fichas son del mismo color");
+                      // System.out.println("Ambas fichas son del mismo color");
                    }
                 } 
                 }
             else{
-                System.out.println("De esa forma no se mueve la reina");
+               // System.out.println("De esa forma no se mueve la reina");
+               JOptionPane.showMessageDialog(null,"De esa forma no se mueve la reina");
             }
             return efectivo;
         }
