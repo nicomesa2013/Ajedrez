@@ -111,9 +111,6 @@ public class Reina extends Ficha {
                 else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
                    if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
                         if(!ocupada){
-                            if(casillaF.getFicha() instanceof Rey){
-                                JOptionPane.showMessageDialog(null,"Se termino el juego");
-                            }
                             this.comer(casillaI,casillaF);
                             efectivo = true;
                         }
