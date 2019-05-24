@@ -70,11 +70,17 @@ public class FrmAjedrez extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre Blancas");
 
-        txtBlancas.setText("Cesar");
+        txtBlancas.setText("Jugador1");
+        txtBlancas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtBlancas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBlancasActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre Negras");
 
-        txtNegras.setText("Ana");
+        txtNegras.setText("Jugador2");
 
         btnJugar.setText("Iniciar partida");
         btnJugar.addActionListener(new java.awt.event.ActionListener() {
@@ -322,6 +328,10 @@ public class FrmAjedrez extends javax.swing.JFrame {
             pnlTablero.setToolTipText((char) ('A' + col - 1) + Integer.toString(row));
         }
     }//GEN-LAST:event_pnlTableroMouseMoved
+
+    private void txtBlancasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBlancasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBlancasActionPerformed
 
     /**
      * @param args the command line arguments

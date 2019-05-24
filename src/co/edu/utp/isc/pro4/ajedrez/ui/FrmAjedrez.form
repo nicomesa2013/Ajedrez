@@ -91,8 +91,16 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtBlancas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cesar"/>
+            <Property name="text" type="java.lang.String" value="Jugador1"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBlancasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -101,7 +109,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNegras">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ana"/>
+            <Property name="text" type="java.lang.String" value="Jugador2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnJugar">

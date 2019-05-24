@@ -43,10 +43,12 @@ public class Torre extends Ficha {
                 else if(casillaF.getFila() > casillaI.getFila()){
                     fI = fI + 1;
                 }
-                casillaC = tablero.getCasilla(cI,fI);
-                ocupada = casillaC.isOcupada();
+                casillaC = tablero.getCasilla(fI,cI);
+                if(cI != cF || fI != fF){
+                    ocupada = casillaC.isOcupada();
+                }
                 while((casillaC.getFila() != casillaF.getFila()) && (casillaC.getColumna() != casillaF.getColumna()) && !ocupada){
-                    casillaC = tablero.getCasilla(cI,fI);
+                    casillaC = tablero.getCasilla(fI,cI);
                     ocupada = casillaC.isOcupada();
                     if (casillaF.getColumna() > casillaI.getColumna()){
                     cI = cI + 1;
@@ -61,19 +63,25 @@ public class Torre extends Ficha {
                         fI = fI + 1;
                     }
                 }
+                System.out.println("Ocupada:"+ ocupada);
                 if(!ocupada){
-                if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
-                    this.comer(casillaI, casillaF);
-                    efectivo = true;
-                }
-                else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
-                    //System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
-                }
-                else if(!casillaF.isOcupada()){//Movimiento normal
-                    casillaI.setFichaNull();
-                    super.asociarFichaTablero(this, casillaF);
-                    efectivo = true;
-                }
+                    System.out.println("f Ocupada: "+ocupada);
+                    if(!casillaF.isOcupada()){//Movimiento normal
+                        casillaI.setFichaNull();
+                        super.asociarFichaTablero(this, casillaF);
+                        efectivo = true;
+                    }
+                    else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
+                        //System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
+                        System.out.println("entro");
+                    }
+                    else if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
+                        if(casillaF.getFicha() instanceof Rey){
+                            JOptionPane.showMessageDialog(null,"Se termino el juego");
+                        }
+                        this.comer(casillaI, casillaF);
+                        efectivo = true;
+                    }
                 }
                 else{//Movimiento no valido por elemento en la trayectoria
                     //System.out.println("Movimiento no valido por ficha en trayectoria");

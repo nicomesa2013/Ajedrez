@@ -67,9 +67,7 @@ public class Peon extends Ficha {
                             }
                         }
                         else if(this.getColor() == Color.BLANCO){
-                            System.out.println("cI : "+ cI + "cI: " + cF + "restaA: " + restaA);
                             if((restaA == -1 && cF == cI )|| (restaA == -2 && fIAUX == 1)){
-                                System.out.println("Entro");
                                 casillaI.setFichaNull();
                                 super.asociarFichaTablero(this, casillaF);
                                 efectivo = true;
@@ -86,14 +84,21 @@ public class Peon extends Ficha {
                     else if(casillaF.isOcupada()){
                         if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
                             if(Math.abs(restaB) == 1){
-                                if(casillaI.getFicha().getColor() == Color.BLANCO && restaA == -1){
+                                if(this.getColor() == Color.BLANCO && restaA == -1){
+                                    if(casillaF.getFicha() instanceof Rey){
+                                        JOptionPane.showMessageDialog(null,"Se termino el juego");
+                                    }
                                     this.comer(casillaI, casillaF); 
                                     efectivo = true;
+                                }    
+                                else if(this.getColor() == Color.NEGRO && restaA == 1){
+                                if(casillaF.getFicha() instanceof Rey){
+                                    JOptionPane.showMessageDialog(null,"Se termino el juego");
                                 }
-                                else if(casillaI.getFicha().getColor() == Color.NEGRO && restaA == 1){
                                     this.comer(casillaI, casillaF);
                                     efectivo = true;
                                 }    
+                            }
                             }
                             else{
                                 //throw new MovimientoNoValidoException("Asi no come el peon");
@@ -107,7 +112,7 @@ public class Peon extends Ficha {
                 else if(ocupada){//Movimiento no valido por elemento en la trayectoria
                    // throw new MovimientoNoValidoException("Movimiento no valido por ficha en trayectoria");
                 }
-            }
+            
             else{
                // throw new MovimientoNoValidoException("De esa forma no se mueve el peon");
                JOptionPane.showMessageDialog(null,"De esa forma no se mueve el peon");
