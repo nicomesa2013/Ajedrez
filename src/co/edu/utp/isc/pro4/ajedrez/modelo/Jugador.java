@@ -22,20 +22,26 @@ public class Jugador {
     }
 
     public void jugar(Casilla casillaI, Casilla casillaF) throws MovimientoNoValidoException {
+        boolean efectivo;
+        efectivo = false;
         if(casillaI.isOcupada()){
             Ficha f;
             f = casillaI.getFicha();
             if((casillaI.getFicha().getColor() == Color.BLANCO) && (ajedrez.getTurno() == 0) 
                 || (casillaI.getFicha().getColor() == Color.NEGRO) && (ajedrez.getTurno() == 1))
-                f.mover(ajedrez.getTablero(), casillaI, casillaF);
+                efectivo = f.mover(ajedrez.getTablero(), casillaI, casillaF);
+                
             else{
-                ajedrez.cambioTurno();//Para volver al turno en que estaba
                 System.out.println("No es su turno");
             }
         }
         else{
-            ajedrez.cambioTurno();
             System.out.println("No ha seleccionado una ficha");
+            efectivo = false;
+        }
+        if(!efectivo){
+            ajedrez.cambioTurno();
+            System.out.println("Vuelva a internarlo");
         }
     }
 

@@ -20,8 +20,8 @@ public class Torre extends Ficha {
     }
 
     @Override
-        public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
-            boolean ocupada = false;
+        public boolean mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
+            boolean ocupada = false, efectivo = false;
             int cI,cF,fI,fF;
             cI = casillaI.getColumna() - 'A';//x Inicial
             fI = casillaI.getFila() - 1;//y Inicial
@@ -62,7 +62,8 @@ public class Torre extends Ficha {
                 }
                 if(!ocupada){
                 if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
-                this.comer(casillaI, casillaF);
+                    this.comer(casillaI, casillaF);
+                    efectivo = true;
                 }
                 else if(casillaI.getFicha().getColor() == casillaF.getFicha().getColor()){//Si la ficha inicial es del mismo color que la final no es valido
                     System.out.println("Movimiento no valido porque ambas fichas son del mismo color.");
@@ -70,6 +71,7 @@ public class Torre extends Ficha {
                 else if(!casillaF.isOcupada()){//Movimiento normal
                     casillaI.setFichaNull();
                     super.asociarFichaTablero(this, casillaF);
+                    efectivo = true;
                 }
                 }
                 else{//Movimiento no valido por elemento en la trayectoria
@@ -79,8 +81,10 @@ public class Torre extends Ficha {
             else{
                 System.out.println("Asi no se mueve la torre");
             }
+            return efectivo;
         }
         
+    @Override
     public void draw(Graphics2D g, float x, float y) {
         GeneralPath polyline = new GeneralPath(GeneralPath.WIND_EVEN_ODD, 17);
         polyline.moveTo(x + 5, y + 5);

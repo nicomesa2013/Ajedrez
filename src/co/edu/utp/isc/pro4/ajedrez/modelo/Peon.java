@@ -22,8 +22,8 @@ public class Peon extends Ficha {
     }
 
     @Override
-    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) throws MovimientoNoValidoException {
-        boolean ocupada = false;
+    public boolean mover(Tablero tablero, Casilla casillaI, Casilla casillaF) throws MovimientoNoValidoException {
+        boolean ocupada = false, efectivo = false;
             int cI,cF,fI,fIAUX,fF, restaA, restaB;
             cI = casillaI.getColumna() - 'A';//x Inicial
             fI = casillaI.getFila() - 1;//y Inicial
@@ -49,25 +49,34 @@ public class Peon extends Ficha {
                         ocupada = casillaC.isOcupada();
                     }
                 }
-                System.out.println(ocupada);
                 if(!ocupada){
                     if(!casillaF.isOcupada()){//Movimiento normal
                         if(this.getColor() == Color.NEGRO){
-                            if(restaA == 1 || (restaA == 2 && fIAUX == 6)){
+                            if((restaA == 1 && cF == cI ) || (restaA == 2 && fIAUX == 6)){
                                 casillaI.setFichaNull();
                                 super.asociarFichaTablero(this, casillaF);
+                                efectivo = true;
+                            }
+                            else if(fIAUX != 6){
+                                System.out.println("Este movimiento no es valido en esta fila");
                             }
                             else{
-                                System.out.println("Este movimiento no es valido en esta fila");
+                                System.out.println("Asi no se mueve el peon");
                             }
                         }
                         else if(this.getColor() == Color.BLANCO){
-                            if(restaA == -1 || (restaA == -2 && fIAUX == 1)){
+                            System.out.println("cI : "+ cI + "cI: " + cF + "restaA: " + restaA);
+                            if((restaA == -1 && cF == cI )|| (restaA == -2 && fIAUX == 1)){
+                                System.out.println("Entro");
                                 casillaI.setFichaNull();
                                 super.asociarFichaTablero(this, casillaF);
+                                efectivo = true;
+                            }
+                            else if(fIAUX != 1){
+                                System.out.println("Este movimiento no es valido en esta fila");
                             }
                             else{
-                                System.out.println("Este movimiento no es valido en esta fila");
+                                System.out.println("Asi no se mueve el peon");
                             }
                         }
                     }
@@ -75,10 +84,12 @@ public class Peon extends Ficha {
                         if(casillaI.getFicha().getColor() != casillaF.getFicha().getColor()){
                             if(Math.abs(restaB) == 1){
                                 if(casillaI.getFicha().getColor() == Color.BLANCO && restaA == -1){
-                                    this.comer(casillaI, casillaF);   
+                                    this.comer(casillaI, casillaF); 
+                                    efectivo = true;
                                 }
                                 else if(casillaI.getFicha().getColor() == Color.NEGRO && restaA == 1){
                                     this.comer(casillaI, casillaF);
+                                    efectivo = true;
                                 }    
                             }
                             else{
@@ -96,6 +107,7 @@ public class Peon extends Ficha {
             else{
                 throw new MovimientoNoValidoException("De esa forma no se mueve el peon");
             }
+            return efectivo;
     }
 
 

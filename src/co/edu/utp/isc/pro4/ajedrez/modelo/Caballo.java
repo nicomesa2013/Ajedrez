@@ -22,8 +22,9 @@ public class Caballo extends Ficha {
     }
 
     @Override
-    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
+    public boolean mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
        int cI,cF,fI,fF;
+       boolean efectivo = false;
        cI = casillaI.getColumna() - 'A';//x Inicial
        fI = casillaI.getFila() - 1;//y Inicial
        cF = casillaF.getColumna() - 'A';//x Final 
@@ -32,11 +33,13 @@ public class Caballo extends Ficha {
            if(!casillaF.isOcupada()){//Movimiento normal
                casillaI.setFichaNull();
                super.asociarFichaTablero(this, casillaF);
+               efectivo = true;
            }       
            
            else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
                 if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
                     this.comer(casillaI,casillaF);
+                    efectivo = true;
                 }
                 else{
                     System.out.println("Ambas fichas son del mismo color");
@@ -45,8 +48,9 @@ public class Caballo extends Ficha {
        }
 
        else{
-           System.out.println("Asi no se mueve la torre");
+           System.out.println("Asi no se mueve el caballo");
        }
+        return efectivo;
     }
 
     @Override
