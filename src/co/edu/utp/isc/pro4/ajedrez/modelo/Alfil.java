@@ -8,11 +8,8 @@
 
     import java.awt.GradientPaint;
     import java.awt.Graphics2D;
-    import java.awt.geom.Ellipse2D;
-    import java.awt.geom.GeneralPath;
-    import java.awt.geom.Line2D;
     import java.awt.geom.Rectangle2D;
-import javax.swing.JOptionPane;
+    import javax.swing.JOptionPane;
 
 
     /**
@@ -24,21 +21,17 @@ import javax.swing.JOptionPane;
         public Alfil(Color color) {
             super(color);
         }
-
-        @Override
-        public boolean mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
-            boolean ocupada = false, efectivo = false;
-            int cI,cF,fI,fF, restaA, restaB;
+        
+        private boolean trayectoria(Tablero tablero, Casilla casillaI, Casilla casillaF){
+            boolean ocupada = false;
+            int cI,cF,fI,fF;
             cI = casillaI.getColumna() - 'A';//x Inicial
             fI = casillaI.getFila() - 1;//y Inicial
             cF = casillaF.getColumna() - 'A';//x Final 
             fF = casillaF.getFila() - 1 ;//y Final
-            restaA = fI - fF;
-            restaB = cI - cF;
             Casilla casillaC;
             casillaC = casillaI;
-            if(Math.abs(restaA) == Math.abs(restaB)){
-                if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+            if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
                     cI = cI + 1;
                     fI = fI + 1;
                 }
@@ -61,8 +54,7 @@ import javax.swing.JOptionPane;
                 }
                 while((cI != cF || fI != fF) && ocupada==false){
                     casillaC = tablero.getCasilla(fI,cI);
-                    ocupada=casillaC.isOcupada();
-                    System.out.println(ocupada);
+                    ocupada = casillaC.isOcupada();
                     if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
                         cI = cI + 1;
                         fI = fI + 1;
@@ -80,6 +72,21 @@ import javax.swing.JOptionPane;
                         fI = fI - 1;
                     }
                 }
+                return ocupada;
+        }
+
+        @Override
+        public boolean mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
+            boolean ocupada = false, efectivo = false;
+            int cI,cF,fI,fF, restaA, restaB;
+            cI = casillaI.getColumna() - 'A';//x Inicial
+            fI = casillaI.getFila() - 1;//y Inicial
+            cF = casillaF.getColumna() - 'A';//x Final 
+            fF = casillaF.getFila() - 1 ;//y Final
+            restaA = fI - fF;
+            restaB = cI - cF;
+            ocupada = trayectoria(tablero, casillaI, casillaF);
+            if(Math.abs(restaA) == Math.abs(restaB)){
                 if(!casillaF.isOcupada()){//Que en la casilla final no haya nada    TIPO 1 (MOVIMIENTO NORMAL)
                     if(!ocupada){//Si no hay nada en la trayectoria
                         casillaI.setFichaNull();
@@ -112,6 +119,47 @@ import javax.swing.JOptionPane;
             }
             return efectivo;
         }
+        
+        @Override
+        public void haceJaque(Tablero tablero){
+            int cI, fI, cF, fF, restaA, restaB;
+            cI = this.getCasilla().getColumna() - 'A';
+            fI = this.getCasilla().getFila() - 1;
+            Casilla casillaC;
+            Ficha rey;
+            rey = this;
+            boolean ocupada;
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 8; j++){
+                    casillaC = tablero.getCasilla(i,j);
+                    if(casillaC.getFicha() instanceof Rey && casillaC.getFicha().getColor() != this.getColor()){
+                        rey = casillaC.getFicha();
+                    }
+                }
+            }
+            cF = rey.getCasilla().getColumna() - 'A';
+            fF = rey.getCasilla().getFila() - 1;
+            restaA = fI - fF;
+            restaB = cI - cF;
+
+            if(Math.abs(restaA) == Math.abs(restaB)){
+                ocupada = trayectoria(tablero, this.getCasilla(), rey.getCasilla());
+                if(!ocupada){
+                    super.setJaque(true);
+                }
+                else{
+                    super.setJaque(false);
+                }
+                
+            }
+            else{
+                super.setJaque(false);
+            }
+        }
+            
+          
+        
+        
 
         @Override
         public void draw(Graphics2D g, float x, float y) {

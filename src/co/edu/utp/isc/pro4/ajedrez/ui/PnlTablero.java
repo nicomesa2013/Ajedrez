@@ -24,7 +24,6 @@ public class PnlTablero extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("Pintando Objetos");
         if (tablero == null) {
             super.paint(g);
             return;

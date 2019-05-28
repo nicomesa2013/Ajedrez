@@ -89,10 +89,10 @@ public class Rey extends Ficha {
         //cruz
         g.draw(new Rectangle2D.Float(x+24,y+3, 3,13 ));
         g.draw(new Rectangle2D.Float(x+18,y+8, 15,2 ));
-        
-        
-        
-  
+    }
+
+    @Override
+    public void haceJaque(Tablero tablero) {
         
     }
  

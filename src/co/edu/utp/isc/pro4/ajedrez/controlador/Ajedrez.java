@@ -50,7 +50,7 @@ public class Ajedrez {
         this.jugadores[1] = jugador2;
         
     }
-
+    
     public void setPnlTablero(PnlTablero pnlTablero) {
         this.pnlTablero = pnlTablero;
         pnlTablero.setTablero(tablero);
@@ -58,7 +58,9 @@ public class Ajedrez {
 
     public void jugar() {
         jugadores[0].setAjedrez(this);
+        //jugadores[0].setFichas(0);
         jugadores[1].setAjedrez(this);
+        //jugadores[1].setFichas(1);
         
         ubicarFichasTablero();
         cronometro.iniciar();
@@ -152,9 +154,9 @@ public class Ajedrez {
         pnlTablero.updateUI();
     }
 
-    public void moverFicha(String inicio, String fin) throws MovimientoNoValidoException {
-        
+    public void moverFicha(String inicio, String fin){
         jugadores[turno].jugar(tablero.getCasilla(inicio),tablero.getCasilla(fin));
+        //jugadores[turno].setFichas(turno);
         this.mostrarTablero();
         this.cambioTurno();
     }

@@ -6,11 +6,8 @@
 package co.edu.utp.isc.pro4.ajedrez.ui;
 
 import co.edu.utp.isc.pro4.ajedrez.controlador.Ajedrez;
-import co.edu.utp.isc.pro4.ajedrez.exceptions.MovimientoNoValidoException;
 import co.edu.utp.isc.pro4.ajedrez.modelo.Jugador;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -304,12 +301,7 @@ public class FrmAjedrez extends javax.swing.JFrame {
             } else {
                 txtFin.setText((char) ('A' + col - 1) + Integer.toString(row));
                 jugadaInicial = true;
-                try {
-                    juego.moverFicha(txtInicio.getText(), txtFin.getText());
-                } catch (MovimientoNoValidoException ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage());
-                    Logger.getLogger(FrmAjedrez.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                juego.moverFicha(txtInicio.getText(), txtFin.getText());
             }
         }
     }//GEN-LAST:event_pnlTableroMouseReleased

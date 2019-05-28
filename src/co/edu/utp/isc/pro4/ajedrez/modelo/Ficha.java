@@ -16,17 +16,26 @@ public abstract class Ficha extends Dibujable {
 
     private Casilla casilla;
     private final Color color;
+    private boolean jaque;
 
     public Ficha(Color color) {
         this.color = color;
+        this.jaque = false;
     }
-
-    public abstract boolean mover(Tablero tablero, Casilla casillaI, Casilla casillaF) throws MovimientoNoValidoException;
-
+    public void setJaque(boolean haceJaque){
+        this.jaque = haceJaque;
+    }
+    public boolean getJaque(){
+        return jaque;
+    }        
+    public abstract boolean mover(Tablero tablero, Casilla casillaI, Casilla casillaF);
+    
+    public abstract void haceJaque(Tablero tablero);
+    
     public void comer(Casilla casillaI, Casilla casillaF){
         asociarFichaTablero(casillaI.getFicha(),casillaF);
         casillaI.setFichaNull();
-    };
+    }
 
     public Casilla getCasilla() {
         return casilla;
